@@ -1189,7 +1189,7 @@ function renderCompetitors() {
           return valid ? `${escapeHtml(currency)} ${amount.toLocaleString("zh-CN", {minimumFractionDigits: 2, maximumFractionDigits: 2})}` : "暂无数据";
         };
         const salesPrice = item.averageSalePrice == null ? "暂无数据" : `CNY ${Number(item.averageSalePrice).toLocaleString("zh-CN", {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-        const extra = imported ? `<span>平均销售价 ${salesPrice}</span><span>统计日期 ${escapeHtml(item.period || "未知")}</span>` : "";
+        const extra = imported || item.averageSalePrice != null ? `<span>平均销售价 ${salesPrice}</span><span>统计日期 ${escapeHtml(item.period || "未知")}</span>` : "";
         return `<strong>${escapeHtml(item.brand)}</strong><span class="competitor-order-values"><span>历史最高 ${formatOrderValue(item.highestOrderValue)}</span><span>历史最低 ${formatOrderValue(item.lowestOrderValue)}</span><span>平均客单 ${formatOrderValue(item.averageOrderValue)}</span>${extra}</span>`;
       } },
       { label: isSheetData ? "类目" : "品类", value: (item) => escapeHtml(item.category) },
