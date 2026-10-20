@@ -1179,11 +1179,12 @@ function renderCompetitors() {
   elements.competitorTable.innerHTML = buildResponsiveTable(
     [
       { label: "商品信息", value: (item) => {
-        const amount = item.averageOrderValue;
         const currency = item.averageOrderCurrency;
-        const hasPrice = typeof amount === "number" && Number.isFinite(amount) && amount >= 0 && /^[A-Z]{3}$/.test(currency || "");
-        const price = hasPrice ? `${escapeHtml(currency)} ${amount.toLocaleString("zh-CN", {minimumFractionDigits: 2, maximumFractionDigits: 2})}` : "暂无数据";
-        return `<strong>${escapeHtml(item.brand)}</strong><span class="competitor-order-value">客单价 ${price}</span>`;
+        const formatOrderValue = (amount) => {
+          const valid = typeof amount === "number" && Number.isFinite(amount) && amount >= 0 && /^[A-Z]{3}$/.test(currency || "");
+          return valid ? `${escapeHtml(currency)} ${amount.toLocaleString("zh-CN", {minimumFractionDigits: 2, maximumFractionDigits: 2})}` : "暂无数据";
+        };
+        return `<strong>${escapeHtml(item.brand)}</strong><span class="competitor-order-values"><span>历史最高 ${formatOrderValue(item.highestOrderValue)}</span><span>历史最低 ${formatOrderValue(item.lowestOrderValue)}</span><span>平均客单 ${formatOrderValue(item.averageOrderValue)}</span></span>`;
       } },
       { label: isSheetData ? "类目" : "品类", value: (item) => escapeHtml(item.category) },
       { label: isSheetData ? "账号" : "型号", value: (item) => escapeHtml(item.model || "--") },

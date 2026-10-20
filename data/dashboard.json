@@ -567,7 +567,9 @@
       "change": 2,
       "rankDerived": false,
       "averageOrderValue": 89.5,
-      "averageOrderCurrency": "USD"
+      "averageOrderCurrency": "USD",
+      "highestOrderValue": 116.35,
+      "lowestOrderValue": 62.65
     },
     {
       "brand": "示例品牌 B",
@@ -580,7 +582,9 @@
       "change": 1,
       "rankDerived": false,
       "averageOrderValue": 106.75,
-      "averageOrderCurrency": "USD"
+      "averageOrderCurrency": "USD",
+      "highestOrderValue": 138.78,
+      "lowestOrderValue": 74.72
     },
     {
       "brand": "示例品牌 C",
@@ -593,7 +597,9 @@
       "change": 0,
       "rankDerived": false,
       "averageOrderValue": 124,
-      "averageOrderCurrency": "USD"
+      "averageOrderCurrency": "USD",
+      "highestOrderValue": 161.2,
+      "lowestOrderValue": 86.8
     },
     {
       "brand": "示例品牌 D",
@@ -606,7 +612,9 @@
       "change": -1,
       "rankDerived": false,
       "averageOrderValue": 141.25,
-      "averageOrderCurrency": "USD"
+      "averageOrderCurrency": "USD",
+      "highestOrderValue": 183.63,
+      "lowestOrderValue": 98.88
     },
     {
       "brand": "示例品牌 A",
@@ -619,7 +627,9 @@
       "change": 2,
       "rankDerived": false,
       "averageOrderValue": 89.5,
-      "averageOrderCurrency": "GBP"
+      "averageOrderCurrency": "GBP",
+      "highestOrderValue": 116.35,
+      "lowestOrderValue": 62.65
     },
     {
       "brand": "示例品牌 B",
@@ -632,7 +642,9 @@
       "change": 1,
       "rankDerived": false,
       "averageOrderValue": 106.75,
-      "averageOrderCurrency": "GBP"
+      "averageOrderCurrency": "GBP",
+      "highestOrderValue": 138.78,
+      "lowestOrderValue": 74.72
     },
     {
       "brand": "示例品牌 C",
@@ -645,7 +657,9 @@
       "change": 0,
       "rankDerived": false,
       "averageOrderValue": 124,
-      "averageOrderCurrency": "GBP"
+      "averageOrderCurrency": "GBP",
+      "highestOrderValue": 161.2,
+      "lowestOrderValue": 86.8
     },
     {
       "brand": "示例品牌 D",
@@ -658,7 +672,9 @@
       "change": -1,
       "rankDerived": false,
       "averageOrderValue": 141.25,
-      "averageOrderCurrency": "GBP"
+      "averageOrderCurrency": "GBP",
+      "highestOrderValue": 183.63,
+      "lowestOrderValue": 98.88
     },
     {
       "brand": "示例品牌 A",
@@ -671,7 +687,9 @@
       "change": 2,
       "rankDerived": false,
       "averageOrderValue": 89.5,
-      "averageOrderCurrency": "EUR"
+      "averageOrderCurrency": "EUR",
+      "highestOrderValue": 116.35,
+      "lowestOrderValue": 62.65
     },
     {
       "brand": "示例品牌 B",
@@ -684,7 +702,9 @@
       "change": 1,
       "rankDerived": false,
       "averageOrderValue": 106.75,
-      "averageOrderCurrency": "EUR"
+      "averageOrderCurrency": "EUR",
+      "highestOrderValue": 138.78,
+      "lowestOrderValue": 74.72
     },
     {
       "brand": "示例品牌 C",
@@ -697,7 +717,9 @@
       "change": 0,
       "rankDerived": false,
       "averageOrderValue": 124,
-      "averageOrderCurrency": "EUR"
+      "averageOrderCurrency": "EUR",
+      "highestOrderValue": 161.2,
+      "lowestOrderValue": 86.8
     },
     {
       "brand": "示例品牌 D",
@@ -710,7 +732,9 @@
       "change": -1,
       "rankDerived": false,
       "averageOrderValue": 141.25,
-      "averageOrderCurrency": "EUR"
+      "averageOrderCurrency": "EUR",
+      "highestOrderValue": 183.63,
+      "lowestOrderValue": 98.88
     }
   ],
   "materials": [
