@@ -1142,6 +1142,7 @@ function renderSalesDetails() {
 
 function renderCompetitors() {
   const competitorSync = state.data.meta.competitorSync;
+  const imported = Boolean(state.data.meta.competitorLocalImport);
   const syncedAt = competitorSync?.syncedAt;
   const syncNote = syncedAt
     ? ` · 飞书同步 ${syncTimeFormatter.format(new Date(syncedAt))}`
@@ -1167,7 +1168,10 @@ function renderCompetitors() {
     : sort.value === "rank" ? (Number(a.rank) || Infinity) - (Number(b.rank) || Infinity)
     : (Number(b.sales) || 0) - (Number(a.sales) || 0));
   const hasDerivedRanks = filtered.some((item) => item.rankDerived);
-  elements.competitorSourceBadge.textContent = isSheetData ? "飞书同步" : "演示数据";
+  elements.competitorSourceBadge.textContent = imported ? "本地导入" : isSheetData ? "飞书同步" : "演示数据";
+  document.querySelector("#competitor-data-note").textContent = imported
+    ? "显示所选文件的统计日期和原始人民币口径。平均销售价不等于订单客单价；缺少历史及订单数据时不计算客单价。"
+    : "默认排名、销量和客单价均为虚构示例。筛选条件仅保留在当前页面。";
   elements.competitorCount.textContent = `显示 ${filtered.length} / ${all.length} 条${syncNote}`;
   const markets = new Set(filtered.map((item) => item.country).filter(Boolean)).size;
   const platforms = new Set(filtered.map((item) => item.platform).filter(Boolean)).size;
@@ -1184,14 +1188,16 @@ function renderCompetitors() {
           const valid = typeof amount === "number" && Number.isFinite(amount) && amount >= 0 && /^[A-Z]{3}$/.test(currency || "");
           return valid ? `${escapeHtml(currency)} ${amount.toLocaleString("zh-CN", {minimumFractionDigits: 2, maximumFractionDigits: 2})}` : "暂无数据";
         };
-        return `<strong>${escapeHtml(item.brand)}</strong><span class="competitor-order-values"><span>历史最高 ${formatOrderValue(item.highestOrderValue)}</span><span>历史最低 ${formatOrderValue(item.lowestOrderValue)}</span><span>平均客单 ${formatOrderValue(item.averageOrderValue)}</span></span>`;
+        const salesPrice = item.averageSalePrice == null ? "暂无数据" : `CNY ${Number(item.averageSalePrice).toLocaleString("zh-CN", {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        const extra = imported ? `<span>平均销售价 ${salesPrice}</span><span>统计日期 ${escapeHtml(item.period || "未知")}</span>` : "";
+        return `<strong>${escapeHtml(item.brand)}</strong><span class="competitor-order-values"><span>历史最高 ${formatOrderValue(item.highestOrderValue)}</span><span>历史最低 ${formatOrderValue(item.lowestOrderValue)}</span><span>平均客单 ${formatOrderValue(item.averageOrderValue)}</span>${extra}</span>`;
       } },
       { label: isSheetData ? "类目" : "品类", value: (item) => escapeHtml(item.category) },
       { label: isSheetData ? "账号" : "型号", value: (item) => escapeHtml(item.model || "--") },
       { label: isSheetData ? "国家地区" : "国家", value: (item) => escapeHtml(item.country) },
       { label: "平台", value: (item) => escapeHtml(item.platform) },
-      { label: isSheetData ? "日均成交量" : "估算销量", value: (item) => integer.format(item.sales) },
-      { label: hasDerivedRanks ? "成交量排序" : "类目排名", value: (item) => `第 ${integer.format(item.rank)} 名` },
+      { label: imported ? "销量" : isSheetData ? "日均成交量" : "估算销量", value: (item) => item.sales == null ? "暂无数据" : integer.format(item.sales) },
+      { label: imported ? "导出顺序" : hasDerivedRanks ? "成交量排序" : "类目排名", value: (item) => `第 ${integer.format(item.rank)} ${imported ? "条" : "名"}` },
       {
         label: hasDerivedRanks ? "排序说明" : "排名变化",
         value: (item) => item.change == null

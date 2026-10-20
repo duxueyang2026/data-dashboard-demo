@@ -60,7 +60,7 @@
       </aside>
 
       <main class="main-content">
-        <p class="overview-disclosure" role="note">公开演示版：所有数据、汇率和提醒均为虚构示例，不连接真实业务数据，不用于经营决策。</p>
+        <p class="overview-disclosure" role="note">公开演示版：默认数据为虚构示例。竞品表可在本机临时导入数据，不会上传或同步给其他人。</p>
         <header class="topbar">
           <div class="title-block">
             <p class="eyebrow" id="view-eyebrow">BUSINESS OVERVIEW</p>
@@ -289,11 +289,17 @@
             <p><strong>使用说明：</strong>按国家、平台和关键词筛选，再查看竞品销量与排名。</p>
             <span class="demo-badge" id="competitor-source-badge">数据加载中</span>
           </div>
+          <div class="competitor-import panel">
+            <div><strong>每日数据导入</strong><p>选择 Kalodata 导出的德、法、意 XLSX 文件，可多选。数据只在当前页面处理，刷新后需重新导入；不会自动日更。</p></div>
+            <label class="secondary-button competitor-import-button">选择 XLSX 文件<input id="competitor-import-files" type="file" accept=".xlsx" multiple /></label>
+            <button class="secondary-button" id="competitor-clear-import" type="button" hidden>恢复演示数据</button>
+            <p id="competitor-import-status" role="status" aria-live="polite"></p>
+          </div>
           <section class="panel module-panel" aria-labelledby="competitor-title">
             <div class="panel-header">
               <div>
                 <h2 id="competitor-title">市场竞品表现</h2>
-                <p>示例销量与排名仅供体验；不同国家或平台的排名不可直接比较。</p>
+                <p>不同国家或平台的排名不可直接比较；本地导入的导出顺序不等同于类目排名。</p>
               </div>
               <span class="record-count" id="competitor-count"></span>
             </div>
@@ -305,7 +311,7 @@
               <button class="secondary-button competitor-reset" id="competitor-reset" type="button">重置筛选</button>
             </div>
             <div class="competitor-summary" id="competitor-summary" aria-live="polite"></div>
-            <p class="competitor-filter-note">排名、销量和客单价均为虚构示例；客单价按各记录标注的币种显示。筛选条件仅保留在当前页面。</p>
+            <p class="competitor-filter-note" id="competitor-data-note">默认排名、销量和客单价均为虚构示例。筛选条件仅保留在当前页面。</p>
             <div class="table-wrap" id="competitor-table"></div>
           </section>
         </section>
@@ -424,7 +430,9 @@
       src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"
       defer
     ></script>
+    <script src="./jszip.min.js" defer></script>
     <script src="./app.js" defer></script>
+    <script src="./competitor-import.js" defer></script>
   </body>
 </html>
 
