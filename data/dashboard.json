@@ -1,0 +1,724 @@
+{
+  "meta": {
+    "title": "经营总览（虚构演示）",
+    "currency": "CNY",
+    "updatedAt": "2026-10-20（虚构数据）",
+    "demo": true,
+    "schemaVersion": 3,
+    "source": "虚构模拟数据",
+    "exchangeRates": {
+      "base": "CNY",
+      "asOf": "演示汇率",
+      "source": "虚构示例",
+      "reference": "仅供演示",
+      "rates": {
+        "CNY": 1,
+        "EUR": 0.13,
+        "USD": 0.14
+      }
+    }
+  },
+  "defaultTargets": {
+    "revenue": 850000,
+    "adSpend": 120000,
+    "roi": 6,
+    "creatorCost": 30000
+  },
+  "comparisons": {
+    "revenue": 8,
+    "orders": 5,
+    "adSpend": 4,
+    "roi": 3,
+    "creatorCost": -2
+  },
+  "daily": [
+    {
+      "date": "2026-09-21",
+      "revenue": 18000,
+      "orders": 120,
+      "visitors": 2800
+    },
+    {
+      "date": "2026-09-22",
+      "revenue": 18870,
+      "orders": 126,
+      "visitors": 2919
+    },
+    {
+      "date": "2026-09-23",
+      "revenue": 19740,
+      "orders": 132,
+      "visitors": 3038
+    },
+    {
+      "date": "2026-09-24",
+      "revenue": 20610,
+      "orders": 138,
+      "visitors": 3157
+    },
+    {
+      "date": "2026-09-25",
+      "revenue": 21480,
+      "orders": 144,
+      "visitors": 3276
+    },
+    {
+      "date": "2026-09-26",
+      "revenue": 22350,
+      "orders": 150,
+      "visitors": 3395
+    },
+    {
+      "date": "2026-09-27",
+      "revenue": 23220,
+      "orders": 156,
+      "visitors": 3514
+    },
+    {
+      "date": "2026-09-28",
+      "revenue": 18490,
+      "orders": 127,
+      "visitors": 2863
+    },
+    {
+      "date": "2026-09-29",
+      "revenue": 19360,
+      "orders": 133,
+      "visitors": 2982
+    },
+    {
+      "date": "2026-09-30",
+      "revenue": 20230,
+      "orders": 139,
+      "visitors": 3101
+    },
+    {
+      "date": "2026-10-01",
+      "revenue": 21100,
+      "orders": 145,
+      "visitors": 3220
+    },
+    {
+      "date": "2026-10-02",
+      "revenue": 21970,
+      "orders": 151,
+      "visitors": 3339
+    },
+    {
+      "date": "2026-10-03",
+      "revenue": 22840,
+      "orders": 157,
+      "visitors": 3458
+    },
+    {
+      "date": "2026-10-04",
+      "revenue": 23710,
+      "orders": 163,
+      "visitors": 3577
+    },
+    {
+      "date": "2026-10-05",
+      "revenue": 18980,
+      "orders": 134,
+      "visitors": 2926
+    },
+    {
+      "date": "2026-10-06",
+      "revenue": 19850,
+      "orders": 140,
+      "visitors": 3045
+    },
+    {
+      "date": "2026-10-07",
+      "revenue": 20720,
+      "orders": 146,
+      "visitors": 3164
+    },
+    {
+      "date": "2026-10-08",
+      "revenue": 21590,
+      "orders": 152,
+      "visitors": 3283
+    },
+    {
+      "date": "2026-10-09",
+      "revenue": 22460,
+      "orders": 158,
+      "visitors": 3402
+    },
+    {
+      "date": "2026-10-10",
+      "revenue": 23330,
+      "orders": 164,
+      "visitors": 3521
+    },
+    {
+      "date": "2026-10-11",
+      "revenue": 24200,
+      "orders": 170,
+      "visitors": 3640
+    },
+    {
+      "date": "2026-10-12",
+      "revenue": 19470,
+      "orders": 141,
+      "visitors": 2989
+    },
+    {
+      "date": "2026-10-13",
+      "revenue": 20340,
+      "orders": 147,
+      "visitors": 3108
+    },
+    {
+      "date": "2026-10-14",
+      "revenue": 21210,
+      "orders": 153,
+      "visitors": 3227
+    },
+    {
+      "date": "2026-10-15",
+      "revenue": 22080,
+      "orders": 159,
+      "visitors": 3346
+    },
+    {
+      "date": "2026-10-16",
+      "revenue": 22950,
+      "orders": 165,
+      "visitors": 3465
+    },
+    {
+      "date": "2026-10-17",
+      "revenue": 23820,
+      "orders": 171,
+      "visitors": 3584
+    },
+    {
+      "date": "2026-10-18",
+      "revenue": 24690,
+      "orders": 177,
+      "visitors": 3703
+    },
+    {
+      "date": "2026-10-19",
+      "revenue": 19960,
+      "orders": 148,
+      "visitors": 3052
+    },
+    {
+      "date": "2026-10-20",
+      "revenue": 20830,
+      "orders": 154,
+      "visitors": 3171
+    }
+  ],
+  "markets": [
+    {
+      "country": "US",
+      "countryName": "美国",
+      "platform": "amazon",
+      "revenue": 60000,
+      "orders": 400,
+      "adSpend": 10000,
+      "creatorCost": 3000,
+      "change": 3
+    },
+    {
+      "country": "US",
+      "countryName": "美国",
+      "platform": "tiktok",
+      "revenue": 67000,
+      "orders": 435,
+      "adSpend": 10700,
+      "creatorCost": 3200,
+      "change": 4
+    },
+    {
+      "country": "US",
+      "countryName": "美国",
+      "platform": "dtc",
+      "revenue": 74000,
+      "orders": 470,
+      "adSpend": 11400,
+      "creatorCost": 3400,
+      "change": 5
+    },
+    {
+      "country": "UK",
+      "countryName": "英国",
+      "platform": "amazon",
+      "revenue": 72000,
+      "orders": 470,
+      "adSpend": 11200,
+      "creatorCost": 3400,
+      "change": 4
+    },
+    {
+      "country": "UK",
+      "countryName": "英国",
+      "platform": "tiktok",
+      "revenue": 79000,
+      "orders": 505,
+      "adSpend": 11900,
+      "creatorCost": 3600,
+      "change": 5
+    },
+    {
+      "country": "UK",
+      "countryName": "英国",
+      "platform": "dtc",
+      "revenue": 86000,
+      "orders": 540,
+      "adSpend": 12600,
+      "creatorCost": 3800,
+      "change": 6
+    },
+    {
+      "country": "DE",
+      "countryName": "德国",
+      "platform": "amazon",
+      "revenue": 84000,
+      "orders": 540,
+      "adSpend": 12400,
+      "creatorCost": 3800,
+      "change": 5
+    },
+    {
+      "country": "DE",
+      "countryName": "德国",
+      "platform": "tiktok",
+      "revenue": 91000,
+      "orders": 575,
+      "adSpend": 13100,
+      "creatorCost": 4000,
+      "change": 6
+    },
+    {
+      "country": "DE",
+      "countryName": "德国",
+      "platform": "dtc",
+      "revenue": 98000,
+      "orders": 610,
+      "adSpend": 13800,
+      "creatorCost": 4200,
+      "change": 7
+    }
+  ],
+  "platformTrends": {
+    "amazon": [
+      30,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42,
+      44,
+      46,
+      39,
+      41,
+      43,
+      45,
+      47,
+      49,
+      51,
+      53,
+      55,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60,
+      62,
+      64,
+      57,
+      59,
+      61
+    ],
+    "tiktok": [
+      35,
+      37,
+      39,
+      41,
+      43,
+      45,
+      47,
+      49,
+      51,
+      44,
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      58,
+      60,
+      53,
+      55,
+      57,
+      59,
+      61,
+      63,
+      65,
+      67,
+      69,
+      62,
+      64,
+      66
+    ],
+    "dtc": [
+      40,
+      42,
+      44,
+      46,
+      48,
+      50,
+      52,
+      54,
+      56,
+      49,
+      51,
+      53,
+      55,
+      57,
+      59,
+      61,
+      63,
+      65,
+      58,
+      60,
+      62,
+      64,
+      66,
+      68,
+      70,
+      72,
+      74,
+      67,
+      69,
+      71
+    ]
+  },
+  "countryTrends": {
+    "US": [
+      20,
+      22,
+      24,
+      26,
+      28,
+      30,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42
+    ],
+    "UK": [
+      24,
+      26,
+      28,
+      30,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42,
+      44,
+      46
+    ],
+    "DE": [
+      28,
+      30,
+      32,
+      34,
+      36,
+      38,
+      40,
+      42,
+      44,
+      46,
+      48,
+      50
+    ]
+  },
+  "alerts": [
+    {
+      "severity": "high",
+      "label": "示例",
+      "title": "示例：关注广告投放效率",
+      "owner": "演示负责人",
+      "deadline": "10-25",
+      "action": "此提醒为虚构内容，不代表实际经营状况。"
+    }
+  ],
+  "tips": [
+    {
+      "title": "示例：检查渠道表现",
+      "action": "结合真实数据验证投放和转化表现。"
+    }
+  ],
+  "salesDetails": [
+    {
+      "date": "2026-10-19",
+      "country": "美国",
+      "platform": "Amazon",
+      "category": "示例品类",
+      "model": "示例型号-1",
+      "revenue": 3000,
+      "orders": 20,
+      "roi": 4
+    },
+    {
+      "date": "2026-10-19",
+      "country": "美国",
+      "platform": "TikTok Shop",
+      "category": "示例品类",
+      "model": "示例型号-2",
+      "revenue": 3200,
+      "orders": 21,
+      "roi": 4.1
+    },
+    {
+      "date": "2026-10-19",
+      "country": "美国",
+      "platform": "独立站",
+      "category": "示例品类",
+      "model": "示例型号-3",
+      "revenue": 3400,
+      "orders": 22,
+      "roi": 4.2
+    },
+    {
+      "date": "2026-10-19",
+      "country": "英国",
+      "platform": "Amazon",
+      "category": "示例品类",
+      "model": "示例型号-4",
+      "revenue": 3600,
+      "orders": 23,
+      "roi": 4.3
+    },
+    {
+      "date": "2026-10-19",
+      "country": "英国",
+      "platform": "TikTok Shop",
+      "category": "示例品类",
+      "model": "示例型号-5",
+      "revenue": 3800,
+      "orders": 24,
+      "roi": 4.4
+    },
+    {
+      "date": "2026-10-19",
+      "country": "英国",
+      "platform": "独立站",
+      "category": "示例品类",
+      "model": "示例型号-6",
+      "revenue": 4000,
+      "orders": 25,
+      "roi": 4.5
+    },
+    {
+      "date": "2026-10-19",
+      "country": "德国",
+      "platform": "Amazon",
+      "category": "示例品类",
+      "model": "示例型号-7",
+      "revenue": 4200,
+      "orders": 26,
+      "roi": 4.6
+    },
+    {
+      "date": "2026-10-19",
+      "country": "德国",
+      "platform": "TikTok Shop",
+      "category": "示例品类",
+      "model": "示例型号-8",
+      "revenue": 4400,
+      "orders": 27,
+      "roi": 4.7
+    },
+    {
+      "date": "2026-10-19",
+      "country": "德国",
+      "platform": "独立站",
+      "category": "示例品类",
+      "model": "示例型号-9",
+      "revenue": 4600,
+      "orders": 28,
+      "roi": 4.8
+    }
+  ],
+  "competitors": [
+    {
+      "brand": "示例品牌 A",
+      "category": "示例品类",
+      "model": "演示型号-1",
+      "country": "美国",
+      "platform": "TikTok Shop",
+      "sales": 80,
+      "rank": 1,
+      "change": 2,
+      "rankDerived": false
+    },
+    {
+      "brand": "示例品牌 B",
+      "category": "示例品类",
+      "model": "演示型号-2",
+      "country": "美国",
+      "platform": "TikTok Shop",
+      "sales": 72,
+      "rank": 2,
+      "change": 1,
+      "rankDerived": false
+    },
+    {
+      "brand": "示例品牌 C",
+      "category": "示例品类",
+      "model": "演示型号-3",
+      "country": "美国",
+      "platform": "TikTok Shop",
+      "sales": 64,
+      "rank": 3,
+      "change": 0,
+      "rankDerived": false
+    },
+    {
+      "brand": "示例品牌 D",
+      "category": "示例品类",
+      "model": "演示型号-4",
+      "country": "美国",
+      "platform": "TikTok Shop",
+      "sales": 56,
+      "rank": 4,
+      "change": -1,
+      "rankDerived": false
+    },
+    {
+      "brand": "示例品牌 A",
+      "category": "示例品类",
+      "model": "演示型号-1",
+      "country": "英国",
+      "platform": "TikTok Shop",
+      "sales": 70,
+      "rank": 1,
+      "change": 2,
+      "rankDerived": false
+    },
+    {
+      "brand": "示例品牌 B",
+      "category": "示例品类",
+      "model": "演示型号-2",
+      "country": "英国",
+      "platform": "TikTok Shop",
+      "sales": 62,
+      "rank": 2,
+      "change": 1,
+      "rankDerived": false
+    },
+    {
+      "brand": "示例品牌 C",
+      "category": "示例品类",
+      "model": "演示型号-3",
+      "country": "英国",
+      "platform": "TikTok Shop",
+      "sales": 54,
+      "rank": 3,
+      "change": 0,
+      "rankDerived": false
+    },
+    {
+      "brand": "示例品牌 D",
+      "category": "示例品类",
+      "model": "演示型号-4",
+      "country": "英国",
+      "platform": "TikTok Shop",
+      "sales": 46,
+      "rank": 4,
+      "change": -1,
+      "rankDerived": false
+    },
+    {
+      "brand": "示例品牌 A",
+      "category": "示例品类",
+      "model": "演示型号-1",
+      "country": "德国",
+      "platform": "TikTok Shop",
+      "sales": 60,
+      "rank": 1,
+      "change": 2,
+      "rankDerived": false
+    },
+    {
+      "brand": "示例品牌 B",
+      "category": "示例品类",
+      "model": "演示型号-2",
+      "country": "德国",
+      "platform": "TikTok Shop",
+      "sales": 52,
+      "rank": 2,
+      "change": 1,
+      "rankDerived": false
+    },
+    {
+      "brand": "示例品牌 C",
+      "category": "示例品类",
+      "model": "演示型号-3",
+      "country": "德国",
+      "platform": "TikTok Shop",
+      "sales": 44,
+      "rank": 3,
+      "change": 0,
+      "rankDerived": false
+    },
+    {
+      "brand": "示例品牌 D",
+      "category": "示例品类",
+      "model": "演示型号-4",
+      "country": "德国",
+      "platform": "TikTok Shop",
+      "sales": 36,
+      "rank": 4,
+      "change": -1,
+      "rankDerived": false
+    }
+  ],
+  "materials": [
+    {
+      "name": "示例短视频 A",
+      "platform": "TikTok Shop",
+      "type": "短视频",
+      "publishedAt": "2026-10-10",
+      "views": 10000,
+      "ctr": 2.5,
+      "revenue": 3000,
+      "status": "示例"
+    }
+  ],
+  "documents": [
+    {
+      "name": "示例经营周报.xlsx",
+      "type": "Excel",
+      "owner": "示例部门",
+      "updatedAt": "2026-10-19 10:00"
+    }
+  ],
+  "inventory": [
+    {
+      "sku": "DEMO-001",
+      "model": "示例型号-1",
+      "country": "美国",
+      "warehouse": "示例仓库",
+      "available": 200,
+      "days": 15,
+      "status": "正常",
+      "suggested": 0
+    }
+  ]
+}
