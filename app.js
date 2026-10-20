@@ -1147,9 +1147,35 @@ function renderCompetitors() {
     ? ` · 飞书同步 ${syncTimeFormatter.format(new Date(syncedAt))}`
     : "";
   const isSheetData = Boolean(competitorSync?.source === "Feishu Sheet");
-  const hasDerivedRanks = state.data.competitors.some((item) => item.rankDerived);
+  const all = state.data.competitors;
+  const country = document.querySelector("#competitor-country");
+  const platform = document.querySelector("#competitor-platform");
+  const search = document.querySelector("#competitor-search");
+  const sort = document.querySelector("#competitor-sort");
+  for (const [select, key] of [[country, "country"], [platform, "platform"]]) {
+    const previous = select.value;
+    const options = [...new Set(all.map((item) => item[key]).filter(Boolean))].sort((a, b) => a.localeCompare(b, "zh-CN"));
+    select.replaceChildren(new Option(key === "country" ? "全部国家" : "全部平台", ""), ...options.map((value) => new Option(value, value)));
+    select.value = options.includes(previous) ? previous : "";
+  }
+  const query = search.value.trim().toLocaleLowerCase();
+  const filtered = all.filter((item) => (!country.value || item.country === country.value)
+    && (!platform.value || item.platform === platform.value)
+    && (!query || [item.brand, item.model, item.category].some((value) => String(value || "").toLocaleLowerCase().includes(query))));
+  filtered.sort((a, b) => sort.value === "name"
+    ? String(a.brand || "").localeCompare(String(b.brand || ""), "zh-CN")
+    : sort.value === "rank" ? (Number(a.rank) || Infinity) - (Number(b.rank) || Infinity)
+    : (Number(b.sales) || 0) - (Number(a.sales) || 0));
+  const hasDerivedRanks = filtered.some((item) => item.rankDerived);
   elements.competitorSourceBadge.textContent = isSheetData ? "飞书同步" : "演示数据";
-  elements.competitorCount.textContent = `${state.data.competitors.length} 个竞品${syncNote}`;
+  elements.competitorCount.textContent = `显示 ${filtered.length} / ${all.length} 条${syncNote}`;
+  const markets = new Set(filtered.map((item) => item.country).filter(Boolean)).size;
+  const platforms = new Set(filtered.map((item) => item.platform).filter(Boolean)).size;
+  document.querySelector("#competitor-summary").innerHTML = `<div><span>匹配记录</span><strong>${filtered.length}</strong></div><div><span>覆盖国家</span><strong>${markets}</strong></div><div><span>覆盖平台</span><strong>${platforms}</strong></div>`;
+  if (!filtered.length) {
+    elements.competitorTable.innerHTML = '<p class="competitor-empty" role="status">没有找到匹配的竞品，请更换关键词或重置筛选。</p>';
+    return;
+  }
   elements.competitorTable.innerHTML = buildResponsiveTable(
     [
       { label: isSheetData ? "商品名称" : "品牌", value: (item) => `<strong>${escapeHtml(item.brand)}</strong>` },
@@ -1169,7 +1195,7 @@ function renderCompetitors() {
           )}</strong>`,
       },
     ],
-    state.data.competitors,
+    filtered,
   );
 }
 
@@ -1465,6 +1491,17 @@ elements.navItems.forEach((item) => {
   item.addEventListener("click", () => showView(item.dataset.view));
 });
 
+for (const id of ["competitor-search", "competitor-country", "competitor-platform", "competitor-sort"]) {
+  document.querySelector(`#${id}`).addEventListener(id === "competitor-search" ? "input" : "change", () => {
+    if (state.data) renderCompetitors();
+  });
+}
+document.querySelector("#competitor-reset").addEventListener("click", () => {
+  for (const id of ["competitor-search", "competitor-country", "competitor-platform"]) document.querySelector(`#${id}`).value = "";
+  document.querySelector("#competitor-sort").value = "sales";
+  if (state.data) renderCompetitors();
+});
+
 elements.periodFilter.addEventListener("change", () => updateFilterState());
 elements.countryFilter.addEventListener("change", () => updateFilterState());
 elements.platformFilter.addEventListener("change", () => updateFilterState());
@@ -1556,3 +1593,4 @@ window.addEventListener("resize", () => {
 });
 
 loadData();
+

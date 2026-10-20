@@ -286,17 +286,26 @@
 
         <section class="view-section" id="view-competitors" data-view-section="competitors" hidden>
           <div class="module-toolbar">
-            <p><strong>监测维度：</strong>商品、类目、账号、国家地区、平台与日均成交量</p>
+            <p><strong>使用说明：</strong>按国家、平台和关键词筛选，再查看竞品销量与排名。</p>
             <span class="demo-badge" id="competitor-source-badge">数据加载中</span>
           </div>
           <section class="panel module-panel" aria-labelledby="competitor-title">
             <div class="panel-header">
               <div>
                 <h2 id="competitor-title">市场竞品表现</h2>
-                <p>对比销量、排名及变化趋势</p>
+                <p>示例销量与排名仅供体验；不同国家或平台的排名不可直接比较。</p>
               </div>
               <span class="record-count" id="competitor-count"></span>
             </div>
+            <div class="competitor-filters" role="search" aria-label="筛选竞品">
+              <label>关键词<input id="competitor-search" type="search" placeholder="搜索品牌、型号或品类" /></label>
+              <label>国家<select id="competitor-country"><option value="">全部国家</option></select></label>
+              <label>平台<select id="competitor-platform"><option value="">全部平台</option></select></label>
+              <label>排序<select id="competitor-sort"><option value="sales">销量从高到低</option><option value="rank">排名从前到后</option><option value="name">品牌名称</option></select></label>
+              <button class="secondary-button competitor-reset" id="competitor-reset" type="button">重置筛选</button>
+            </div>
+            <div class="competitor-summary" id="competitor-summary" aria-live="polite"></div>
+            <p class="competitor-filter-note">排名和销量为各条记录的示例值；筛选条件仅保留在当前页面。</p>
             <div class="table-wrap" id="competitor-table"></div>
           </section>
         </section>
@@ -418,3 +427,4 @@
     <script src="./app.js" defer></script>
   </body>
 </html>
+
