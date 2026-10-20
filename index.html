@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="模拟经营看板，所有数据均为虚构示例。"
+    />
+    <title>经营数据中心 | 演示版</title>
+    <link rel="icon" href="data:," />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./overview-refresh.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="主导航">
+        <a class="brand" href="#overview" aria-label="返回经营总览">
+          <span class="brand-mark">
+            <span aria-hidden="true">D</span>
+          </span>
+          <span class="brand-copy">
+            <strong>经营数据中心 · 演示</strong>
+            <span>DEMO DASHBOARD</span>
+          </span>
+        </a>
+
+        <nav class="nav-list" aria-label="看板模块">
+          <button class="nav-item active" type="button" data-view="overview" aria-current="page">
+            <i class="fa-solid fa-table-cells-large" aria-hidden="true"></i>
+            <span>经营总览</span>
+          </button>
+          <button class="nav-item" type="button" data-view="sales">
+            <i class="fa-solid fa-chart-column" aria-hidden="true"></i>
+            <span>销售明细</span>
+          </button>
+          <button class="nav-item" type="button" data-view="competitors">
+            <i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i>
+            <span>竞品洞察</span>
+          </button>
+          <button class="nav-item" type="button" data-view="materials">
+            <i class="fa-regular fa-images" aria-hidden="true"></i>
+            <span>素材表现</span>
+          </button>
+          <button class="nav-item" type="button" data-view="documents">
+            <i class="fa-regular fa-folder-open" aria-hidden="true"></i>
+            <span>资料中心</span>
+          </button>
+          <button class="nav-item" type="button" data-view="inventory">
+            <i class="fa-solid fa-cube" aria-hidden="true"></i>
+            <span>库存管理</span>
+          </button>
+        </nav>
+
+        <div class="source-panel"><span class="source-label">数据来源</span><strong>虚构演示数据</strong><span>仅供界面与功能体验</span></div>
+      </aside>
+
+      <main class="main-content">
+        <p class="overview-disclosure" role="note">公开演示版：所有数据、汇率和提醒均为虚构示例，不连接真实业务数据，不用于经营决策。</p>
+        <header class="topbar">
+          <div class="title-block">
+            <p class="eyebrow" id="view-eyebrow">BUSINESS OVERVIEW</p>
+            <h1 id="view-title">经营总览</h1>
+            <p class="subtitle" id="view-subtitle">国家与平台经营表现、目标达成与管理建议</p>
+          </div>
+          <div class="header-actions">
+            <div class="data-state" aria-live="polite">
+              <span class="state-dot" id="state-dot"></span>
+              <span id="data-state-text">正在读取数据</span>
+              <time id="updated-at"></time>
+            </div>
+            <button class="icon-button refresh-button" id="refresh-button" type="button">
+              <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+              <span>刷新数据</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="error-banner" id="error-banner" role="alert" hidden></div>
+
+        <section class="view-section active" id="view-overview" data-view-section="overview">
+          <form class="filter-bar" id="overview-filters" aria-label="经营数据筛选">
+            <label class="filter-control">
+              <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+              <span class="sr-only">统计周期</span>
+              <select id="period-filter" name="period">
+                <option value="month">本月</option>
+                <option value="7">近 7 天</option>
+                <option value="30">近 30 天</option>
+                <option value="all">全部数据</option>
+                <option value="custom">自定义时间</option>
+              </select>
+            </label>
+            <div class="custom-date-range" id="custom-date-range" aria-label="自定义统计时间" hidden>
+              <label class="date-control">
+                <span>开始</span>
+                <input id="start-date-filter" name="start" type="date" aria-label="开始日期" />
+              </label>
+              <span class="date-separator" aria-hidden="true">至</span>
+              <label class="date-control">
+                <span>结束</span>
+                <input id="end-date-filter" name="end" type="date" aria-label="结束日期" />
+              </label>
+            </div>
+            <label class="filter-control">
+              <i class="fa-solid fa-earth-asia" aria-hidden="true"></i>
+              <span class="sr-only">国家</span>
+              <select id="country-filter" name="country">
+                <option value="all">全部国家</option>
+              </select>
+            </label>
+            <label class="filter-control">
+              <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+              <span class="sr-only">销售平台</span>
+              <select id="platform-filter" name="platform">
+                <option value="all">全部平台</option>
+              </select>
+            </label>
+            <label class="filter-control currency-control">
+              <i class="fa-solid fa-coins" aria-hidden="true"></i>
+              <span class="sr-only">显示币种</span>
+              <select id="currency-filter" name="currency" title="切换所有金额的显示币种">
+                <option value="CNY">人民币 CNY</option>
+                <option value="EUR">欧元 EUR</option>
+                <option value="USD">美元 USD</option>
+              </select>
+            </label>
+            <button class="text-button reset-filter" id="reset-filters" type="button" aria-label="重置筛选" title="重置筛选">
+              <i class="fa-solid fa-filter-circle-xmark" aria-hidden="true"></i>
+            </button>
+            <p class="filter-summary" id="filter-summary">正在计算统计范围</p>
+          </form>
+
+          <p class="overview-disclosure">演示版：所有数据均为虚构示例，不连接飞书或真实业务数据。部分时间区间按比例估算，不能用于经营决策。</p>
+
+          <section class="sales-summary-section" aria-labelledby="sales-summary-title">
+            <div class="sales-summary-heading">
+              <div class="section-title-row">
+                <span class="section-icon blue" aria-hidden="true">
+                  <i class="fa-solid fa-chart-column"></i>
+                </span>
+                <div>
+                  <h2 id="sales-summary-title">整体销售数据</h2>
+                  <p>当前筛选范围内的销售规模、投入与效率</p>
+                </div>
+              </div>
+              <span class="panel-period" id="metric-period">本月</span>
+            </div>
+            <div class="metric-grid" id="metric-grid" aria-label="整体销售数据指标"></div>
+          </section>
+
+          <section class="goal-panel" aria-labelledby="goal-title">
+            <div class="goal-heading">
+              <div class="section-title-row">
+                <span class="section-icon green" aria-hidden="true">
+                  <i class="fa-solid fa-bullseye"></i>
+                </span>
+                <div>
+                  <div class="heading-with-badge">
+                    <h2 id="goal-title">经营目标与达成</h2>
+                    <span class="demo-badge">演示数据</span>
+                  </div>
+                  <p id="goal-period">目标周期加载中</p>
+                </div>
+              </div>
+              <button class="secondary-button" id="open-target-dialog" type="button">
+                <i class="fa-solid fa-gear" aria-hidden="true"></i>
+                设置目标
+              </button>
+            </div>
+            <div class="goal-grid" id="goal-grid"></div>
+          </section>
+
+          <div class="overview-layout">
+            <div class="overview-main-column">
+              <section class="panel platform-panel" aria-labelledby="platform-title">
+                <div class="panel-header">
+                  <div>
+                    <div class="heading-with-note">
+                      <h2 id="platform-title">平台经营对比</h2>
+                      <p>销售、投放效率与达人成本对比</p>
+                    </div>
+                  </div>
+                  <span class="panel-period" id="platform-period">近 30 天</span>
+                </div>
+                <div class="platform-grid" id="platform-grid"></div>
+              </section>
+
+              <section class="panel country-panel" aria-labelledby="country-title">
+                <div class="panel-header">
+                  <div>
+                    <h2 id="country-title">国家销售贡献与趋势</h2>
+                    <p>各市场销售占比及当前周期表现</p>
+                  </div>
+                  <label class="compact-select">
+                    <span class="sr-only">国家排序方式</span>
+                    <select id="country-sort">
+                      <option value="revenue">按销售额排序</option>
+                      <option value="roi">按 ROI 排序</option>
+                      <option value="change">按环比排序</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="table-wrap">
+                  <table class="data-table responsive-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">排名</th>
+                        <th scope="col">国家</th>
+                        <th scope="col">销售额</th>
+                        <th scope="col">占比</th>
+                        <th scope="col">ROI</th>
+                        <th scope="col">趋势</th>
+                        <th scope="col">较上期</th>
+                      </tr>
+                    </thead>
+                    <tbody id="country-table-body"></tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="panel overall-trend-panel" aria-labelledby="overall-trend-title">
+                <div class="panel-header">
+                  <div>
+                    <h2 id="overall-trend-title">整体销售趋势</h2>
+                    <p>销售额随时间的变化，关键数值无需悬停即可查看</p>
+                  </div>
+                  <div class="trend-facts" id="trend-facts"></div>
+                </div>
+                <div class="large-chart" id="overall-trend-chart">
+                  <canvas id="overall-trend-canvas" role="img"></canvas>
+                </div>
+              </section>
+            </div>
+
+            <aside class="decision-column" aria-label="经营决策信息">
+              <section class="decision-panel attention-panel" aria-labelledby="attention-title">
+                <div class="decision-heading">
+                  <span class="section-icon red" aria-hidden="true">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                  </span>
+                  <div>
+                    <h2 id="attention-title">需要关注</h2>
+                    <p>优先处理的经营异常</p>
+                  </div>
+                </div>
+                <div class="decision-list" id="attention-list"></div>
+              </section>
+
+              <section class="decision-panel tips-panel" aria-labelledby="tips-title">
+                <div class="decision-heading">
+                  <span class="section-icon green" aria-hidden="true">
+                    <i class="fa-solid fa-lightbulb"></i>
+                  </span>
+                  <div>
+                    <h2 id="tips-title">经营提示</h2>
+                    <p>根据当前表现生成的行动建议</p>
+                  </div>
+                </div>
+                <div class="decision-list" id="tips-list"></div>
+              </section>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-sales" data-view-section="sales" hidden>
+          <div class="module-toolbar">
+            <p><strong>数据粒度：</strong>型号 × 日期 × 国家 × 平台</p>
+            <span class="demo-badge">演示数据</span>
+          </div>
+          <section class="panel module-panel" aria-labelledby="sales-detail-title">
+            <div class="panel-header">
+              <div>
+                <h2 id="sales-detail-title">型号日销售明细</h2>
+                <p>后续可直接映射真实订单和商品维度字段</p>
+              </div>
+              <span class="record-count" id="sales-detail-count"></span>
+            </div>
+            <div class="table-wrap" id="sales-detail-table"></div>
+          </section>
+        </section>
+
+        <section class="view-section" id="view-competitors" data-view-section="competitors" hidden>
+          <div class="module-toolbar">
+            <p><strong>监测维度：</strong>商品、类目、账号、国家地区、平台与日均成交量</p>
+            <span class="demo-badge" id="competitor-source-badge">数据加载中</span>
+          </div>
+          <section class="panel module-panel" aria-labelledby="competitor-title">
+            <div class="panel-header">
+              <div>
+                <h2 id="competitor-title">市场竞品表现</h2>
+                <p>对比销量、排名及变化趋势</p>
+              </div>
+              <span class="record-count" id="competitor-count"></span>
+            </div>
+            <div class="table-wrap" id="competitor-table"></div>
+          </section>
+        </section>
+
+        <section class="view-section" id="view-materials" data-view-section="materials" hidden>
+          <div class="module-toolbar">
+            <p><strong>分析目标：</strong>识别高效素材并指导后续投放</p>
+            <span class="demo-badge">演示数据</span>
+          </div>
+          <section class="panel module-panel" aria-labelledby="material-title">
+            <div class="panel-header">
+              <div>
+                <h2 id="material-title">已发布素材表现</h2>
+                <p>覆盖平台、素材类型、发布时间、曝光、点击率和成交额</p>
+              </div>
+              <span class="record-count" id="material-count"></span>
+            </div>
+            <div class="table-wrap" id="material-table"></div>
+          </section>
+        </section>
+
+        <section class="view-section" id="view-documents" data-view-section="documents" hidden>
+          <div class="documents-layout">
+            <section class="upload-panel" aria-labelledby="upload-title">
+              <i class="fa-solid fa-cloud-arrow-up upload-icon" aria-hidden="true"></i>
+              <h2 id="upload-title">选择需要查阅的文件</h2>
+              <p>当前静态网页仅在本机预览文件信息；接入 GitHub 写入权限后才能真正同步。</p>
+              <label class="primary-button" for="document-upload">
+                <i class="fa-regular fa-folder-open" aria-hidden="true"></i>
+                选择文件
+              </label>
+              <input id="document-upload" type="file" multiple />
+            </section>
+            <section class="panel module-panel" aria-labelledby="document-title">
+              <div class="panel-header">
+                <div>
+                  <h2 id="document-title">最近更新文件</h2>
+                  <p>仓库文件与本次选择的本地文件</p>
+                </div>
+              </div>
+              <div class="document-list" id="document-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view-section" id="view-inventory" data-view-section="inventory" hidden>
+          <div class="module-toolbar">
+            <p><strong>库存口径：</strong>可售库存、预计可售天数与补货状态</p>
+            <span class="demo-badge">演示数据</span>
+          </div>
+          <section class="panel module-panel" aria-labelledby="inventory-title">
+            <div class="panel-header">
+              <div>
+                <h2 id="inventory-title">产品库存情况</h2>
+                <p>按国家、仓库、SKU 和型号识别缺货风险</p>
+              </div>
+              <span class="record-count" id="inventory-count"></span>
+            </div>
+            <div class="table-wrap" id="inventory-table"></div>
+          </section>
+        </section>
+
+        <footer>
+          <span>数据文件：<code>data/dashboard.json</code></span>
+          <span id="data-as-of"></span>
+        </footer>
+      </main>
+    </div>
+
+    <dialog class="target-dialog" id="target-dialog" aria-labelledby="target-dialog-title">
+      <form method="dialog" id="target-form">
+        <div class="dialog-header">
+          <div>
+            <p class="eyebrow">MONTHLY TARGETS</p>
+            <h2 id="target-dialog-title">设置本月经营目标</h2>
+            <p id="target-currency-note">目标保存在当前浏览器中，不会修改 GitHub 数据文件。</p>
+          </div>
+          <button class="dialog-close" value="cancel" aria-label="关闭目标设置">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="target-fields">
+          <label>
+            <span>销售目标</span>
+            <span class="input-with-unit"><b class="target-currency-symbol">¥</b><input id="target-revenue" name="revenue" type="number" min="0" step="0.01" required /></span>
+          </label>
+          <label>
+            <span>投放预算</span>
+            <span class="input-with-unit"><b class="target-currency-symbol">¥</b><input id="target-ad-spend" name="adSpend" type="number" min="0" step="0.01" required /></span>
+          </label>
+          <label>
+            <span>ROI 目标</span>
+            <span class="input-with-unit"><input id="target-roi" name="roi" type="number" min="0" step="0.01" required /><b>倍</b></span>
+          </label>
+          <label>
+            <span>达人合作费用预算</span>
+            <span class="input-with-unit"><b class="target-currency-symbol">¥</b><input id="target-creator-cost" name="creatorCost" type="number" min="0" step="0.01" required /></span>
+          </label>
+        </div>
+        <div class="dialog-actions">
+          <button class="text-button" id="reset-targets" type="button">恢复演示目标</button>
+          <div>
+            <button class="secondary-button" value="cancel">取消</button>
+            <button class="primary-button" id="save-targets" value="default">保存目标</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <script>
+      window.FontAwesomeConfig = { autoReplaceSvg: "nest", observeMutations: true };
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"
+      defer
+    ></script>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
