@@ -56,6 +56,11 @@
     const records = rows.slice(1).filter((row) => field(row, "商品名称")).map((row, i) => ({
       brand: String(field(row, "商品名称")), category: String(field(row, "类目") || "--"), model: "--", country, platform: "TikTok Shop",
       sales: number(field(row, "销量")), averageSalePrice: number(field(row, "平均销售价(¥)")), revenue: number(field(row, "成交金额(¥)")),
+      price: number(field(row, "价格(¥)")), listedAt: field(row, "上架时间"), commission: field(row, "佣金比例"),
+      revenueGrowth: field(row, "成交金额增长率"), liveRevenue: number(field(row, "直播成交金额(¥)")),
+      videoRevenue: number(field(row, "视频成交金额(¥)")), cardRevenue: field(row, "商品卡成交金额"),
+      creators: number(field(row, "达人数量")), creatorOrderRate: field(row, "达人出单率"),
+      imageUrl: field(row, "图片链接"), kalodataUrl: field(row, "Kalodata详情页链接"), tiktokUrl: field(row, "TikTok链接"),
       period: String(field(row, "日期范围") || ""), rank: i + 1, change: null, rankDerived: false,
     }));
     if (!records.length) throw new Error(`${file.name} 没有商品记录`);
@@ -101,4 +106,3 @@
     status.textContent = "刷新后将恢复演示数据，请重新导入文件。";
   });
 })();
-

@@ -312,6 +312,11 @@
             </div>
             <div class="competitor-summary" id="competitor-summary" aria-live="polite"></div>
             <p class="competitor-filter-note" id="competitor-data-note">默认排名、销量和客单价均为虚构示例。筛选条件仅保留在当前页面。</p>
+            <details class="competitor-fields">
+              <summary>选择展示字段 <span>常用字段默认显示，可按需增减</span></summary>
+              <fieldset><legend>商品信息始终显示，勾选其他字段</legend><div id="competitor-field-options" class="competitor-field-options"></div></fieldset>
+              <div class="competitor-field-actions"><button class="secondary-button" type="button" id="competitor-fields-all">全选字段</button><button class="secondary-button" type="button" id="competitor-fields-default">恢复默认字段</button></div>
+            </details>
             <div class="table-wrap" id="competitor-table"></div>
           </section>
         </section>
@@ -435,4 +440,3 @@
     <script src="./competitor-import.js" defer></script>
   </body>
 </html>
-
